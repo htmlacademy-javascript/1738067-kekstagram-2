@@ -1,6 +1,6 @@
 # Личный проект «Кекстаграм»
 
-* Студент: [Иван Дейнеженко](https://up.htmlacademy.ru/javascript-individual/2/user/1738067).
+* Студент: [KEKAR' Дейнеженко](https://up.htmlacademy.ru/javascript-individual/2/user/1738067).
 * Наставник: `Олег Глущенко`.
 
 ---
