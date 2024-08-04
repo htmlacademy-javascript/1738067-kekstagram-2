@@ -7,13 +7,9 @@ function CheckForLenght (word, maxLength) {
 
 }
 
-console.log('Ожидаю true, потому-что максимальная длина 20, строка - "двадцать" - ', CheckForLenght('двадцать', 20));
-console.log('Ожидаю true, потому-что максимальная длина 8, строка - "двадцать" - ', CheckForLenght('двадцать', 8));
-console.log('Ожидаю false, потому-что максимальная длина 5, строка - "двадцать" - ', CheckForLenght('двадцать', 5));
-
-
-console.log('----------------- Разделение -----------------');
-
+CheckForLenght('двадцать', 20); // Ожидаю true, потому-что максимальная длина 20, строка - "двадцать"
+CheckForLenght('двадцать', 8); // Ожидаю true, потому-что максимальная длина 8, строка - "двадцать"
+CheckForLenght('двадцать', 5); // Ожидаю false, потому-что максимальная длина 5, строка - "двадцать"
 
 function isPalindrome(word) {
 
@@ -36,15 +32,10 @@ function isPalindrome(word) {
 
 }
 
-console.log('Ожидаю true, потому-что топот - палиндром - ', isPalindrome('топот'));
-console.log('Ожидаю true, потому-что ДовОд - палиндром - ', isPalindrome('ДовОд'));
-console.log('Ожидаю false, потому-что Кекс - не палиндром - ', isPalindrome('Кекс'));
-console.log('Ожидаю true, потому-что Лёша на полке клопа нашёл - палиндром -', isPalindrome('Лёша на полке клопа нашёл '))
-
-
-
-console.log('----------------- Разделение -----------------');
-
+isPalindrome('топот'); // Ожидаю true, потому-что топот - палиндром
+isPalindrome('ДовОд'); // Ожидаю true, потому-что ДовОд - палиндром
+isPalindrome('Кекс'); // Ожидаю false, потому-что Кекс - не палиндром
+isPalindrome('Лёша на полке клопа нашёл '); // Ожидаю true, потому-что Лёша на полке клопа нашёл - палиндром
 
 function getNumbers(string) { // вытащить все цифры от 0 до 9 из строки/числа
 
@@ -76,11 +67,11 @@ function getNumbers(string) { // вытащить все цифры от 0 до 
 
 }
 
-console.log('2023 год = ', getNumbers('2023 год')); // 2023
-console.log('ECMAScript 2022 = ', getNumbers('ECMAScript 2022')); // 2022
-console.log('1 кефир, 0.5 батона = ', getNumbers('1 кефир, 0.5 батона')); // 105
-console.log('агент 007 = ', getNumbers('агент 007')); // 7
-console.log('а я томат = ', getNumbers('а я томат')); // NaN
-console.log('2023 = ', getNumbers(2023)); // 2023
-console.log('-1 = ', getNumbers(-1));   // 1
-console.log('1.5 = ', getNumbers(1.5));  // 15
+getNumbers('2023 год'); // 2023
+getNumbers('ECMAScript 2022'); // 2022
+getNumbers('1 кефир, 0.5 батона'); // 105
+getNumbers('агент 007'); // 7
+getNumbers('а я томат'); // NaN
+getNumbers(2023); // 2023
+getNumbers(-1);   // 1
+getNumbers(1.5);  // 15
