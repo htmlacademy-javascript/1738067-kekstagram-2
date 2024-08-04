@@ -18,7 +18,7 @@ CheckForLenght('двадцать', 5); // Ожидаю false, потому-чт�
 function isPalindrome(word) {
 
   let index1 = 0; // индекс для первого массива
-  let index2 = word.length-1; // индекс для второго массива
+  let index2 = word.length - 1; // индекс для второго массива
   let array1 = [];
   let array2 = [];
 
@@ -32,7 +32,7 @@ function isPalindrome(word) {
     --index2;
   }
 
-  return array1.replaceAll(' ','').toLowerCase() == array2.replaceAll(' ','').toLowerCase(); // возвращаем массивы параллельно сделав их lowercase и убрав пробелы
+  return array1.replaceAll(' ','').toLowerCase() === array2.replaceAll(' ','').toLowerCase(); // возвращаем массивы параллельно сделав их lowercase и убрав пробелы
 
 }
 
@@ -81,5 +81,5 @@ getNumbers('1 кефир, 0.5 батона'); // 105
 getNumbers('агент 007'); // 7
 getNumbers('а я томат'); // NaN
 getNumbers(2023); // 2023
-getNumbers(-1);   // 1
-getNumbers(1.5);  // 15
+getNumbers(-1); // 1
+getNumbers(1.5); // 15
