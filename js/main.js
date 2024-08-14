@@ -156,5 +156,6 @@ const createObject = () => {
 
 const objects = Array.from({ length: 25 }, createObject);
 
-objects();
+// eslint-disable-next-line no-console
+console.log(objects);
 
