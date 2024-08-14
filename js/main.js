@@ -154,7 +154,7 @@ const createObject = () => {
   };
 };
 
-const objects = Array.from({ length: 25 }, createObject);
+// const objects = Array.from({ length: 25 }, createObject);
 
 // console.log(objects);
 
