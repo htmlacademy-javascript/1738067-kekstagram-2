@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 function CheckForLenght (word, maxLength) {
   if (word.length <= maxLength) {
     return true;
@@ -83,3 +84,31 @@ getNumbers('а я томат'); // NaN
 getNumbers(2023); // 2023
 getNumbers(-1); // 1
 getNumbers(1.5); // 15
+
+// ---------------------- Разделение ----------------------
+
+function meeting(startWork, endWork, startMeeting, meetingLength) {
+
+  // конвертируем
+  const timeInMinutes = (time) => {
+    time = time.split(':');
+    return parseInt(time[0], 10) * 60 + parseInt(time[1], 10);
+  };
+
+  const minutesStartWork = timeInMinutes(startWork);
+  const minutesEndWork = timeInMinutes(endWork);
+  const minutesStartMeeting = timeInMinutes(startMeeting);
+  const meetingEnd = minutesStartMeeting + meetingLength;
+
+  if (minutesStartMeeting >= minutesStartWork && meetingEnd <= minutesEndWork) {
+    return true;
+  }
+
+  return false;
+}
+
+meeting('08:00', '17:30', '14:00', 90); // true
+meeting('8:0', '10:0', '8:0', 120); // true
+meeting('08:00', '14:30', '14:00', 90); // false
+meeting('14:00', '17:30', '08:0', 90); // false
+meeting('8:00', '17:30', '08:00', 900); // false
