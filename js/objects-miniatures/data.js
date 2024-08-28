@@ -1,4 +1,4 @@
-import {getRandomID, getRandomInt} from './util.js';
+import {getRandomID, getRandomInt} from '../util.js';
 
 const MIN = 1;
 const MAX = 25;

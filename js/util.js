@@ -1,9 +1,9 @@
 // Генерируем рандомное целое число
-const getRandomInt = (min, max) => {
+function getRandomInt (min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
-};
+}
 
 // Генерируем рандомный ID
 function getRandomID(min, max) {
@@ -24,4 +24,7 @@ function getRandomID(min, max) {
 
 }
 
-export {getRandomID, getRandomInt};
+const isEscapeKey = (evt) => evt.key === 'Escape';
+
+export {getRandomID, getRandomInt, isEscapeKey};
+
