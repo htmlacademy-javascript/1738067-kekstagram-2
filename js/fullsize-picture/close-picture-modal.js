@@ -1,5 +1,5 @@
-import {isEscapeKey} from '../util.js';
-import {removeMoreCommentsListener} from './comments/createCommentList.js';
+import {isEscapeKey} from '../util';
+import {removeMoreCommentsListener} from './comments/create-comment-list';
 import {getMoreComments} from './comments/get-more-commets';
 
 
