@@ -9,6 +9,10 @@ function hashtagErrorPattern(hashtag) {
     flag = patternHastag.test(value);
   }
 
+  if (hashtag === '') {
+    flag = true;
+  }
+
   return flag;
 
 }
