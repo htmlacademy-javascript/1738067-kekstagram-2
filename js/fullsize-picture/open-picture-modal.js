@@ -1,4 +1,4 @@
-import { createCommentList } from './comments/createCommentList';
+import { createCommentList } from './comments/create-comment-list';
 import { objects } from '../objects-miniatures/data';
 
 

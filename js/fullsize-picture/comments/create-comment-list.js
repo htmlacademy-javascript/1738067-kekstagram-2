@@ -1,4 +1,4 @@
-import {getMoreComments} from '../comments/get-more-commets';
+import {getMoreComments} from './get-more-commets';
 function createCommentList (objectId) {
   const commentsSection = document.querySelector('.social__comments');
   const bigPicture = document.querySelector('.big-picture');
@@ -49,7 +49,6 @@ function createCommentList (objectId) {
   socialCommentsLoader.addEventListener('click', moreComments);
 
   objectId.splice(0, 5);
-  return 123;
 
 }
 

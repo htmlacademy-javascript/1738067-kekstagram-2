@@ -1,4 +1,4 @@
-import {objects} from './data.js';
+import {objects} from './data';
 
 // функция по отрисовке загруженных фото
 const displayPictures = function () {
