@@ -1,6 +1,7 @@
 import { createCommentList } from './comments/create-comment-list';
 import { objects } from '../objects-miniatures/data';
 
+const HOW_MANY_COMMENTS_TO_LOAD = 5;
 
 // общие переменные
 const body = document.querySelector('body');
@@ -41,7 +42,7 @@ pictures.addEventListener('click', (evt) => {
     likesCount.textContent = targetLikes;
     commentsTotalCount.textContent = objects[idParentBlock].comments.length;
 
-    if (commentsArray.length <= 5) {
+    if (commentsArray.length <= HOW_MANY_COMMENTS_TO_LOAD) {
       socialCommentsLoader.classList.add('hidden');
       commentsCount.textContent = parentBlock.querySelector('.picture__comments').textContent;
     } else {

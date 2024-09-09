@@ -2,6 +2,7 @@ import {isEscapeKey} from '../util';
 import {removeMoreCommentsListener} from './comments/create-comment-list';
 import {getMoreComments} from './comments/get-more-commets';
 
+const DEFAULT_VALUE_COMMENTS_COUNTER = 5;
 
 const body = document.querySelector('body');
 const bigPicture = document.querySelector('.big-picture');
@@ -13,7 +14,7 @@ const commentsCount = bigPicture.querySelector('.social__comment-shown-count');
 function closePictureModal () {
   bigPicture.classList.add('hidden');
   body.classList.remove('modal-open');
-  commentsCount.textContent = 5;
+  commentsCount.textContent = DEFAULT_VALUE_COMMENTS_COUNTER;
 
   document.removeEventListener('click', closeByClick);
   bigPicture.removeEventListener('click', closeByEsc);

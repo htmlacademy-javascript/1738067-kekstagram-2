@@ -1,4 +1,7 @@
 import {getMoreComments} from './get-more-commets';
+const [HOW_MANY_COMMENTS_TO_LOAD, HOW_MANY_COMMENTS_TO_DELETE] = [5,5];
+const [WIDTH, HEIGHT] = [35,35];
+
 function createCommentList (objectId) {
   const commentsSection = document.querySelector('.social__comments');
   const bigPicture = document.querySelector('.big-picture');
@@ -11,7 +14,7 @@ function createCommentList (objectId) {
 
   const arrayLength = objectId.length - 1;
 
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < HOW_MANY_COMMENTS_TO_LOAD; i++) {
     // если ВСЯ длина массива === 0, то прекращаем цикл (комментариев нет)
     if (arrayLength + 1 === 0) {
       break;
@@ -23,8 +26,8 @@ function createCommentList (objectId) {
     img.classList.add('social_picture');
     img.src = objectId[i].comment.avatar;
     img.alt = objectId[i].comment.name;
-    img.width = 35;
-    img.height = 35;
+    img.width = WIDTH;
+    img.height = HEIGHT;
 
     p.textContent = objectId[i].comment.message;
     p.classList.add('social__text');
@@ -36,7 +39,7 @@ function createCommentList (objectId) {
     commentsSection.appendChild(li);
 
     // если длина массива < 5 и индекс цикла равен длине массива, то останавливаем цикл (защита от ошибок, если комментариев меньше 5)
-    if (arrayLength < 5 && i === arrayLength) {
+    if (arrayLength < HOW_MANY_COMMENTS_TO_LOAD && i === arrayLength) {
       break;
     }
   }
@@ -48,7 +51,7 @@ function createCommentList (objectId) {
   // добавляем слушатель на кнопку загрузки комментариев
   socialCommentsLoader.addEventListener('click', moreComments);
 
-  objectId.splice(0, 5);
+  objectId.splice(0, HOW_MANY_COMMENTS_TO_DELETE);
 
 }
 

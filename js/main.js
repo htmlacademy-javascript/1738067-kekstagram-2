@@ -8,4 +8,3 @@ import { isFormValid } from './form/validate-form.js';
 displayPictures();
 openForm();
 isFormValid();
-

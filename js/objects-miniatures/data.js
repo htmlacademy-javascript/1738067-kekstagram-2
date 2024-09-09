@@ -1,14 +1,28 @@
 import {getRandomID, getRandomInt} from '../util';
 
-const MIN = 1;
-const MAX = 25;
-const NAMES = ['АЛЕКСЕЙ', 'НАТАЛЬЯ', 'ГЕОРГИЙ', 'ЕВГЕНИЙ', 'МХИТАР', 'МАРИЯ', 'ГЕННАДИЙ', 'ЕВГЕНИЙ', 'МИХАИЛ', 'ЕВГЕНИЙ', 'ПАВЕЛ', 'АНДРЕЙ', 'СЕРГЕЙ', 'ИГОРЬ', 'БАТРАЗ', 'АНДРЕЙ', 'ИВАН', 'ТАХИР', 'ЗАРИФ', 'ТОТРАЗ', 'ВИКТОР', 'АЛЕКСАНДР', 'АЛЕКСАНДР', 'МИХАИЛ', 'ИВАН', 'ТАМЕРЛАН', 'ЛЮДМИЛА', 'АЛИЯ', 'ЕВГЕНИЯ', 'ГАЛИЯ', 'ЕЛЕНА', 'КАМЯР', 'МАРИЯ', 'ХАЛИСА', 'СТЕПАНИДА', 'ВАЛЕНТИНА', 'ЗОЯ', 'НАТАЛЬЯ', 'ЭЛЛА', 'НАТАЛЬЯ'];
+const MINIMUM_INTEGER = 1;
+const MAXIMUM_INTEGER = 25;
 
-// Также сгенерарировал описание, но ограничил его в размере слов — 25, чтобы не захламлять сильно логи, если на самом сайте будет лучше отображаться, сделаю по длинне всего текста
-const getRandomDescription = () => {
+const MINIMUM_COMMENTS = 1;
+const MAXIMUM_COMMENTS = 30;
 
+const MINIMUM_LIKES = 15;
+const MAXIMUM_LIKES = 200;
 
-  const text = `Солнце светит ярко и тепло
+const MINIMUM_AVATAR_IMAGE = 1;
+const MAXIMUM_AVATAR_IMAGE = 6;
+
+const QUANTITY_OF_OBJECTS = 25;
+
+const NAMES = ['АЛЕКСЕЙ', 'НАТАЛЬЯ', 'ГЕОРГИЙ', 'ЕВГЕНИЙ', 'МХИТАР',
+  'МАРИЯ', 'ГЕННАДИЙ', 'ЕВГЕНИЙ', 'МИХАИЛ', 'ЕВГЕНИЙ', 'ПАВЕЛ',
+  'АНДРЕЙ', 'СЕРГЕЙ', 'ИГОРЬ', 'БАТРАЗ', 'АНДРЕЙ', 'ИВАН', 'ТАХИР',
+  'ЗАРИФ', 'ТОТРАЗ', 'ВИКТОР', 'АЛЕКСАНДР', 'АЛЕКСАНДР', 'МИХАИЛ',
+  'ИВАН', 'ТАМЕРЛАН', 'ЛЮДМИЛА', 'АЛИЯ', 'ЕВГЕНИЯ', 'ГАЛИЯ', 'ЕЛЕНА',
+  'КАМЯР', 'МАРИЯ', 'ХАЛИСА', 'СТЕПАНИДА', 'ВАЛЕНТИНА',
+  'ЗОЯ', 'НАТАЛЬЯ', 'ЭЛЛА', 'НАТАЛЬЯ'];
+
+const TEXT_DESCTRIPTION = `Солнце светит ярко и тепло
  Дети играют на улице весело
  Книга лежит на столе открытая
  Птицы поют песни весной и летом
@@ -19,8 +33,18 @@ const getRandomDescription = () => {
  Улыбка друга согревает сердце всегда
  Музыка звучит громко и наполняет душу`;
 
-  const textSplit = text.split(/[ ]/);
-  const maximumWords = getRandomInt(1, 25); // готовим максимум слов
+const TEXT_COMMENTS = `Всё отлично! В целом всё неплохо.
+  Но не всё. Когда вы делаете фотографию, хорошо бы убирать палец из кадра.
+  В конце концов это просто непрофессионально.
+  Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.
+  Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.
+  Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!`;
+
+// Также сгенерарировал описание, но ограничил его в размере слов — 25, чтобы не захламлять сильно логи, если на самом сайте будет лучше отображаться, сделаю по длинне всего текста
+const getRandomDescription = () => {
+
+  const textSplit = TEXT_DESCTRIPTION.split(/[ ]/);
+  const maximumWords = getRandomInt(MINIMUM_INTEGER, MAXIMUM_INTEGER); // готовим максимум слов
   const description = [];
 
   // вытягиваем слово (индекс из массива textSplit)
@@ -40,12 +64,12 @@ const getRandomName = () => {
 
   return function () {
 
-    if (previousValues.length >= (MAX - MIN + 1)) {
+    if (previousValues.length >= (MAXIMUM_INTEGER - MINIMUM_INTEGER + 1)) {
       return null;
     }
-    let currentValue = getRandomInt(MIN, MAX);
+    let currentValue = getRandomInt(MINIMUM_INTEGER, MAXIMUM_INTEGER);
     while (previousValues.includes(currentValue)) {
-      currentValue = getRandomInt(MIN, MAX);
+      currentValue = getRandomInt(MINIMUM_INTEGER, MAXIMUM_INTEGER);
     }
     previousValues.push(currentValue);
     return NAMES[currentValue];
@@ -54,11 +78,10 @@ const getRandomName = () => {
 
 const generateRandomText = () => {
 
-  const text = 'Всё отлично! В целом всё неплохо. Но не всё. Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально. Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше. Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше. Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!';
-  const commentsSplit = text.split(' '); // превращаем строку в массив
+  const commentsSplit = TEXT_COMMENTS.split('.'); // превращаем строку в массив
 
   let comment = [];
-  const commentLengthValue = getRandomInt(1, commentsSplit.length);
+  const commentLengthValue = getRandomInt(MINIMUM_INTEGER, commentsSplit.length);
 
   // циклируем пока в comments не будет нужного количества слов комментария из commentLengthValue | то есть цикл генерации самого комментария
   for (let i = 0; i < commentLengthValue; i++) {
@@ -73,36 +96,30 @@ const generateRandomText = () => {
 
 };
 
-const generateID = getRandomID(MIN, MAX); // генерируем айди для фото
-const generateIDForComments = getRandomID(MIN, MAX); // генерируем айди для комментариев
-const generateUrlID = getRandomID(MIN, MAX); // генерируем рандомное не повторяющееся фото
+const generateID = getRandomID(MINIMUM_INTEGER, MAXIMUM_INTEGER); // генерируем айди для фото
+const generateIDForComments = getRandomID(MINIMUM_INTEGER, MAXIMUM_INTEGER); // генерируем айди для комментариев
+const generateUrlID = getRandomID(MINIMUM_INTEGER, QUANTITY_OF_OBJECTS); // генерируем рандомное не повторяющееся фото
 const generateRandomName = getRandomName(); // генерируем рандомное имя
 
 // генерируем рандомное сообщение одного пользователя
 const createComment = () => ({
   comment: {
     id: generateIDForComments(),
-    avatar: `img/avatar-${getRandomInt(1, 6)}.svg`,
+    avatar: `img/avatar-${getRandomInt(MINIMUM_AVATAR_IMAGE, MAXIMUM_AVATAR_IMAGE)}.svg`,
     message: generateRandomText(),
     name: generateRandomName(),
   }
 });
 // Генерируем от 0 до 30 рандомных комментариев к фото
-const getRandomComments = () => {
+const getRandomComments = () => function () {
+  const allOfComments = [];
+  const commentsValue = getRandomInt(MINIMUM_COMMENTS, MAXIMUM_COMMENTS - 1);
 
-  const minComments = 0;
-  const maxComments = 30;
+  for (let i = 0; i < commentsValue; i++) {
+    allOfComments.push(createComment());
+  }
+  return allOfComments;
 
-  return function () {
-    const allOfComments = [];
-    const commentsValue = getRandomInt(minComments, maxComments - 1);
-
-    for (let i = 0; i < commentsValue; i++) {
-      allOfComments.push(createComment());
-    }
-    return allOfComments;
-
-  };
 };
 
 const generateRandomComments = getRandomComments(); // вызываем генерацию комментариев
@@ -111,9 +128,9 @@ const createObject = () => ({
   id: generateID(),
   url: `photos/${generateUrlID()}.jpg`,
   description: getRandomDescription(),
-  likes: getRandomInt(15, 200),
+  likes: getRandomInt(MINIMUM_LIKES, MAXIMUM_LIKES),
   comments: generateRandomComments(),
 });
 
-const objects = Array.from({ length: 25 }, createObject); // генерируем массив, где 25 элементов, состоящих из объекта createObject
+const objects = Array.from({ length: QUANTITY_OF_OBJECTS }, createObject); // генерируем массив, где 25 элементов, состоящих из объекта createObject
 export {objects};
