@@ -1,6 +1,8 @@
 import {isEscapeKey} from '../util';
 import {fillPhotos} from './fill-photos';
 import {deletePhotos} from './delete-photos';
+import { getScalePhoto } from '../filter-photo/scale-photo';
+import { changeFilter } from '../filter-photo/change-filter';
 
 function openForm() {
   const body = document.querySelector('body');
@@ -10,6 +12,10 @@ function openForm() {
 
   function removeHiddenToForm (evt) {
     fillPhotos(evt); // заполняем все шаблоны-превью и основную картинку, выбранной
+
+    // прогружаем скрипты для редактирования фото
+    getScalePhoto();
+    changeFilter();
 
     // затем показываем окно формы
     body.classList.add('modal-open');

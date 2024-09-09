@@ -1,3 +1,6 @@
+const [HOW_MANY_COMMENTS_TO_LOAD, HOW_MANY_COMMENTS_TO_DELETE] = [5,5];
+const [WIDTH, HEIGHT] = [35,35];
+
 function getMoreComments(objectId) {
   const commentsSection = document.querySelector('.social__comments');
   const bigPicture = document.querySelector('.big-picture');
@@ -7,7 +10,7 @@ function getMoreComments(objectId) {
 
   const arrayLength = objectId.length - 1;
 
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < HOW_MANY_COMMENTS_TO_LOAD; i++) {
     if (arrayLength + 1 === 0) {
       break;
     }
@@ -18,8 +21,8 @@ function getMoreComments(objectId) {
     img.classList.add('social_picture');
     img.src = objectId[i].comment.avatar;
     img.alt = objectId[i].comment.name;
-    img.width = 35;
-    img.height = 35;
+    img.width = WIDTH;
+    img.height = HEIGHT;
 
     p.textContent = objectId[i].comment.message;
     p.classList.add('social__text');
@@ -29,10 +32,12 @@ function getMoreComments(objectId) {
     li.appendChild(p);
 
     commentsSection.appendChild(li);
-    if (arrayLength < 5 && i === arrayLength) {
+
+    if (arrayLength < HOW_MANY_COMMENTS_TO_LOAD && i === arrayLength) {
       break;
     }
-    if (arrayLength <= 5) {
+
+    if (arrayLength <= HOW_MANY_COMMENTS_TO_LOAD) {
       socialCommentsLoader.classList.add('hidden');
     }
 
@@ -40,9 +45,7 @@ function getMoreComments(objectId) {
 
   commentsCount.textContent = counter.length;
 
-  objectId.splice(0, 5);
-
-  return 1;
+  objectId.splice(0, HOW_MANY_COMMENTS_TO_DELETE);
 
 }
 
