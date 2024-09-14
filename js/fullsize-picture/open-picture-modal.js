@@ -1,5 +1,5 @@
 import { createCommentList } from './comments/create-comment-list';
-import { objects } from '../objects-miniatures/data';
+import { getData } from '../get-data';
 
 const HOW_MANY_COMMENTS_TO_LOAD = 5;
 
@@ -17,6 +17,12 @@ const likesCount = bigPicture.querySelector('.likes-count');
 const commentsTotalCount = bigPicture.querySelector('.social__comment-total-count');
 const description = bigPicture.querySelector('.social__caption');
 
+let objects;
+const onSuccess = (data) => {
+  objects = data;
+};
+const fetchData = getData(onSuccess);
+fetchData();
 
 // открытие модульного окна по нажатию на миниатюру
 function openPictureModal () {

@@ -1,14 +1,14 @@
-import {objects} from './data';
+const PICTURE_TEMPLATE = document.querySelector('#picture').content.querySelector('.picture'); // находим шаблон и сразу берём из него нужный блок <a>
+const SIMILAR_LIST_FRAGMENTS = document.createDocumentFragment(); // контейнер пустышка
+const PICTURES = document.querySelector('.pictures'); // блок, куда мы выгружаем контент
 
 // функция по отрисовке загруженных фото
-const displayPictures = function () {
-  const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture'); // находим шаблон и сразу берём из него нужный блок <a>
-  const similarListFragments = document.createDocumentFragment(); // контейнер пустышка
-  const pictures = document.querySelector('.pictures'); // блок, куда мы выгружаем контент
+const displayPictures = function (objects) {
+
   let idCount = 0;
   // прогоняем по каждому элементу массива следующий код
   objects.forEach(({url, description, likes, comments}) => {
-    const clonedTemplate = pictureTemplate.cloneNode(true); // копируем шаблон, чтобы добавлять в него элементы
+    const clonedTemplate = PICTURE_TEMPLATE.cloneNode(true); // копируем шаблон, чтобы добавлять в него элементы
 
     // находим нужные нам элементы для изменений
     const pictureLikes = clonedTemplate.querySelector('.picture__likes');
@@ -25,10 +25,10 @@ const displayPictures = function () {
     pictureLikes.textContent = likes;
 
     // добавляем всё в пустышку
-    similarListFragments.appendChild(clonedTemplate);
+    SIMILAR_LIST_FRAGMENTS.appendChild(clonedTemplate);
     ++idCount;
     // пустыку отправляем в отрисовку блоков
-    pictures.appendChild(similarListFragments);
+    PICTURES.appendChild(SIMILAR_LIST_FRAGMENTS);
 
 
   });

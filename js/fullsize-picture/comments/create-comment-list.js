@@ -24,12 +24,12 @@ function createCommentList (objectId) {
     const p = document.createElement('p');
 
     img.classList.add('social_picture');
-    img.src = objectId[i].comment.avatar;
-    img.alt = objectId[i].comment.name;
+    img.src = objectId[i].avatar;
+    img.alt = objectId[i].name;
     img.width = WIDTH;
     img.height = HEIGHT;
 
-    p.textContent = objectId[i].comment.message;
+    p.textContent = objectId[i].message;
     p.classList.add('social__text');
 
     li.classList.add('social__comment');
