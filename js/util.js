@@ -24,6 +24,7 @@ function getRandomID(min, max) {
 
 }
 
+// проверка на жмание ESC
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
 export {getRandomID, getRandomInt, isEscapeKey};

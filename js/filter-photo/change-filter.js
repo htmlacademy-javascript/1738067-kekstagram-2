@@ -1,4 +1,4 @@
-import { filterOptions } from './filters-options';
+import { options } from './filters-options';
 
 const sliderParent = document.querySelector('.img-upload__effect-level');
 const effectValue = sliderParent.querySelector('.effect-level__value');
@@ -27,7 +27,7 @@ function changeFilter() {
     radio.addEventListener('change', (evt) => {
 
       const targetId = evt.target.id;
-      const options = filterOptions()[targetId];
+      const targetOptions = options()[targetId];
 
       // если жмаем на "нулевой" фильтр, отключаем возможность тягать слайдер
       if (targetId === 'effect-none') {
@@ -40,11 +40,11 @@ function changeFilter() {
 
       sliderBlock.noUiSlider.updateOptions({
         range: {
-          min: options.minValue,
-          max: options.maxValue,
+          min: targetOptions.minValue,
+          max: targetOptions.maxValue,
         },
-        step: options.step,
-        start: options.start,
+        step: targetOptions.step,
+        start: targetOptions.start,
       });
 
 
@@ -54,7 +54,7 @@ function changeFilter() {
         effectValue.value = valueSlider;
 
         // пример нижней строчки — filter: grapescate(1) | .unit отвечает за % или px
-        photoPreview.style.filter = `${options.name}(${valueSlider}${options.unit})`;
+        photoPreview.style.filter = `${targetOptions.name}(${valueSlider}${targetOptions.unit})`;
 
       });
 
