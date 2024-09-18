@@ -78,7 +78,7 @@ const getRandomName = () => {
 
 const generateRandomText = () => {
 
-  const commentsSplit = TEXT_COMMENTS.split('.'); // превращаем строку в массив
+  const commentsSplit = TEXT_COMMENTS.split(' '); // превращаем строку в массив
 
   let comment = [];
   const commentLengthValue = getRandomInt(MINIMUM_INTEGER, commentsSplit.length);

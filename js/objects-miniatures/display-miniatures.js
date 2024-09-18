@@ -1,14 +1,14 @@
-const PICTURE_TEMPLATE = document.querySelector('#picture').content.querySelector('.picture'); // находим шаблон и сразу берём из него нужный блок <a>
-const SIMILAR_LIST_FRAGMENTS = document.createDocumentFragment(); // контейнер пустышка
-const PICTURES = document.querySelector('.pictures'); // блок, куда мы выгружаем контент
+import { filter } from './filter-objects';
+
+const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture'); // находим шаблон и сразу берём из него нужный блок <a>
+const similarListFragments = document.createDocumentFragment(); // контейнер пустышка
+const filters = document.querySelector('.img-filters');
 
 // функция по отрисовке загруженных фото
-const displayPictures = function (objects) {
-
-  let idCount = 0;
+const displayPictures = function (objects, spawnBlock) {
   // прогоняем по каждому элементу массива следующий код
-  objects.forEach(({url, description, likes, comments}) => {
-    const clonedTemplate = PICTURE_TEMPLATE.cloneNode(true); // копируем шаблон, чтобы добавлять в него элементы
+  objects.forEach(({id, url, description, likes, comments}) => {
+    const clonedTemplate = pictureTemplate.cloneNode(true); // копируем шаблон, чтобы добавлять в него элементы
 
     // находим нужные нам элементы для изменений
     const pictureLikes = clonedTemplate.querySelector('.picture__likes');
@@ -18,20 +18,23 @@ const displayPictures = function (objects) {
 
     // в клонированный шаблон выгружаем информацию из N элемента массива
     // берём src, alt — для картинок, textContent — для заполнения комментариями и отрисовки количества лайков
-    clonedTemplate.id = idCount;
+    clonedTemplate.id = id;
     pictureImage.src = url;
     pictureImage.alt = description;
     pictureComments.textContent = commentsCount;
     pictureLikes.textContent = likes;
 
     // добавляем всё в пустышку
-    SIMILAR_LIST_FRAGMENTS.appendChild(clonedTemplate);
-    ++idCount;
+    similarListFragments.appendChild(clonedTemplate);
+
     // пустыку отправляем в отрисовку блоков
-    PICTURES.appendChild(SIMILAR_LIST_FRAGMENTS);
+    spawnBlock.appendChild(similarListFragments);
 
 
   });
+
+  filters.classList.remove('img-filters--inactive');
+  filter();
 
 };
 

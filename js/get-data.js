@@ -1,3 +1,5 @@
+const pictures = document.querySelector('.pictures'); // блок, куда мы выгружаем контент
+
 const options = {
   method: 'GET',
   credential: 'same-origin',
@@ -12,7 +14,7 @@ const getData = (onSuccess, onError) => () => fetch('https://31.javascript.htmla
     throw new Error(`${response.status} ${response.statusText}`);
   })
   .then((data) => {
-    onSuccess(data);
+    onSuccess(data, pictures);
   })
   .catch((err) => {
     onError(err);

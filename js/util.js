@@ -6,26 +6,38 @@ function getRandomInt (min, max) {
 }
 
 // Генерируем рандомный ID
-function getRandomID(min, max) {
-  const previousValues = [];
+function randomID(min, max, count) {
+  // Проверяем, чтобы диапазон был достаточным для заданного количества уникальных чисел
+  if (count + 1 > (max - min + 1)) {
+    throw new Error('Диапазон слишком мал для заданного количества уникальных чисел.');
+  }
 
-  return function () {
+  return function() {
+    // Создаем новый массив с уникальными числами при каждом вызове
+    const numbers = [];
+    while (numbers.length < count + 1) {
+      const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+      if (!numbers.includes(randomNumber)) {
+        numbers.push(randomNumber);
+      }
+    }
 
-    if (previousValues.length >= (max - min + 1)) {
-      return null;
-    }
-    let currentValue = getRandomInt(min, max);
-    while (previousValues.includes(currentValue)) {
-      currentValue = getRandomInt(min, max);
-    }
-    previousValues.push(currentValue);
-    return currentValue;
+    // Возвращаем массив уникальных чисел
+    return numbers;
   };
-
 }
+
+const debounce = (callback, timeoutDelay) => {
+  let timeoutId;
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(rest), timeoutDelay);
+  };
+};
 
 // проверка на жмание ESC
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
-export {getRandomID, getRandomInt, isEscapeKey};
+
+export {randomID, getRandomInt, isEscapeKey, debounce};
 
