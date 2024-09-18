@@ -1,5 +1,6 @@
 import { createCommentList } from './comments/create-comment-list';
 import { getData } from '../get-data';
+import { objects } from '../objects-miniatures/data';
 
 const HOW_MANY_COMMENTS_TO_LOAD = 5;
 

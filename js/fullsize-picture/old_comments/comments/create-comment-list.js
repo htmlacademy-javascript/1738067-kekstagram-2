@@ -24,12 +24,12 @@ function createCommentList (objectId) {
     const p = document.createElement('p');
 
     img.classList.add('social_picture');
-    img.src = objectId[i].avatar;
-    img.alt = objectId[i].name;
+    img.src = objectId[i].comment.avatar;
+    img.alt = objectId[i].comment.name;
     img.width = WIDTH;
     img.height = HEIGHT;
 
-    p.textContent = objectId[i].message;
+    p.textContent = objectId[i].comment.message;
     p.classList.add('social__text');
 
     li.classList.add('social__comment');
@@ -48,9 +48,16 @@ function createCommentList (objectId) {
     getMoreComments(objectId);
   }
 
+  function removeComments() {
+    socialCommentsLoader.addEventListener('click', moreComments);
+    socialCommentsLoader.removeEventListener('click', moreComments);
+
+
+  }
+
   // добавляем слушатель на кнопку загрузки комментариев
   socialCommentsLoader.addEventListener('click', moreComments);
-
+  socialCommentsLoader.addEventListener('click', removeComments);
   objectId.splice(0, HOW_MANY_COMMENTS_TO_DELETE);
 
 }
