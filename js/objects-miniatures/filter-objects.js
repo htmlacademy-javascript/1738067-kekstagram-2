@@ -34,7 +34,7 @@ function defaultFilter() {
   pictures.classList.remove('hidden');
   dublicateSection.innerHTML = '';
 }
-
+ 
 const generateRandomID = randomID(MIN_INTEGER, MAX_INTEGER, QUANTITY_RANDOM_PHOTOS);
 
 function createRandomPhotos() {
