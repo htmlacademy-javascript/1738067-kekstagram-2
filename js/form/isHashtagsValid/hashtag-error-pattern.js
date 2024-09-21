@@ -5,10 +5,11 @@ function hashtagErrorPattern(hashtag) {
 
   let flag = true;
 
-  for (const value of splittedHashtags) {
-    flag = patternHastag.test(value);
-  }
-
+  splittedHashtags.forEach((element) => {
+    if (!patternHastag.test(element)) {
+      flag = false; // Если хотя бы один элемент не соответствует шаблону
+    }
+  });
   if (hashtag === '') {
     flag = true;
   }

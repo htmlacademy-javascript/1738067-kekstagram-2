@@ -20,15 +20,7 @@ function postErrorMessage() {
 
   }
 
-  function closeByClick(evt) {
-    if (!evt.target.closest('.error__inner')) {
-      postError.remove();
-      document.removeEventListener('click', closeByClick);
-    }
-  }
-
   closeButton.addEventListener('click', closeByButton);
-  document.addEventListener('click', closeByClick);
   document.addEventListener('keydown', closeByEsc);
 }
 

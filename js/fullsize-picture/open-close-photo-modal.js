@@ -2,7 +2,8 @@ import { getData } from '../get-data';
 import { isEscapeKey } from '../util';
 
 const DEFAULT_STEP = 5;
-const [WIDTH, HEIGHT] = [35, 35];
+const WIDTH = 35;
+const HEIGHT = 35;
 
 // общие переменные
 const body = document.querySelector('body');
@@ -83,7 +84,7 @@ function createLiElement(avatar, name, message) {
   const img = document.createElement('img');
   const p = document.createElement('p');
 
-  img.classList.add('social_picture');
+  img.classList.add('social__picture');
   img.src = avatar;
   img.alt = name;
   img.width = WIDTH;
