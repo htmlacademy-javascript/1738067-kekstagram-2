@@ -7,16 +7,20 @@ const body = document.querySelector('body');
 const uploadOverlay = document.querySelector('.img-upload__overlay');
 const uploadControl = document.querySelector('.img-upload__input');
 const uploadCloseButton = uploadOverlay.querySelector('.img-upload__cancel');
+const photoPreview = document.querySelector('.img-upload__preview').querySelector('img');
+
 
 function addHiddenToForm () {
   uploadOverlay.classList.add('hidden');
   deletePhotos(); // возвращаем все фото обратно на заглушки
+  photoPreview.style = '';
   body.classList.remove('modal-open');
   uploadCloseButton.removeEventListener('click', addHiddenToForm);
 }
 
 function addHiddenToFormByEsc (evt) {
-  if (isEscapeKey(evt)) {
+  const postError = document.querySelector('.error');
+  if (isEscapeKey(evt) && !postError) {
     uploadOverlay.classList.add('hidden');
     uploadCloseButton.removeEventListener('keydown', addHiddenToFormByEsc);
   }

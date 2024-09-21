@@ -7,6 +7,7 @@ import { createSuccessMessage } from '../on-success-to-post';
 const form = document.querySelector('.img-upload__form');
 const hashtag = form.querySelector('.text__hashtags');
 const description = form.querySelector('.text__description');
+const submitButton = document.querySelector('.img-upload__submit');
 
 const pristine = new Pristine(form, {
   classTo: 'img-upload__field-wrapper',
@@ -50,6 +51,7 @@ function validateDescription(value) {
 const formSubmit = (onSuccess, onError) => {
   form.addEventListener('submit', (evt) => {
     evt.preventDefault();
+    submitButton.setAttribute('disabled', '');
     if (pristine.validate()) {
 
       const formData = new FormData(evt.target);
@@ -68,9 +70,11 @@ const formSubmit = (onSuccess, onError) => {
         .then(() => {
           onSuccess();
           createSuccessMessage();
+          submitButton.disabled = false;
         })
         .catch(() => {
           onError();
+          submitButton.disabled = false;
         });
 
 

@@ -5,7 +5,7 @@ const effectValue = sliderParent.querySelector('.effect-level__value');
 const sliderBlock = sliderParent.querySelector('.effect-level__slider');
 const effectsRadio = document.querySelectorAll('.effects__radio');
 const photoPreview = document.querySelector('.img-upload__preview').querySelector('img');
-sliderBlock.classList.add('hidden'); // заранее отключаю видимость слайдера, так как при открытии формы, мы сразу же попадаем на "нулевой" фильтр
+sliderParent.classList.add('hidden'); // заранее отключаю видимость слайдера, так как при открытии формы, мы сразу же попадаем на "нулевой" фильтр
 
 
 noUiSlider.create(sliderBlock, {
@@ -31,9 +31,12 @@ function changeFilter() {
 
       // если жмаем на "нулевой" фильтр, отключаем возможность тягать слайдер
       if (targetId === 'effect-none') {
-        sliderBlock.classList.add('hidden');
+        sliderParent.classList.add('hidden');
         sliderBlock.style = '';
+        photoPreview.style = '';
         return;
+      } else {
+        sliderParent.classList.remove('hidden');
       }
 
       sliderBlock.classList.remove('hidden');
