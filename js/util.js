@@ -15,7 +15,7 @@ function randomID(min, max, count) {
   return function() {
     // Создаем новый массив с уникальными числами при каждом вызове
     const numbers = [];
-    while (numbers.length < count + 1) {
+    while (numbers.length < count) {
       const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
       if (!numbers.includes(randomNumber)) {
         numbers.push(randomNumber);

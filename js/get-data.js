@@ -1,11 +1,9 @@
-const pictures = document.querySelector('.pictures'); // блок, куда мы выгружаем контент
-
 const options = {
   method: 'GET',
   credential: 'same-origin',
 };
 
-const getData = (onSuccess, onError) => () => fetch('https://31.javascript.htmlacademy.pro/kekstagram/data', options)
+const getData = (onSuccess, onError) => fetch('https://31.javascript.htmlacademy.pro/kekstagram/data', options)
   .then((response) => {
     if (response.ok) {
       return response.json();
@@ -14,10 +12,10 @@ const getData = (onSuccess, onError) => () => fetch('https://31.javascript.htmla
     throw new Error(`${response.status} ${response.statusText}`);
   })
   .then((data) => {
-    onSuccess(data, pictures);
+    onSuccess(data);
   })
-  .catch((err) => {
-    onError(err);
+  .catch(() => {
+    onError();
   });
 
 

@@ -3,6 +3,7 @@ import { fillPhotos } from './fill-photos';
 import { deletePhotos } from './delete-photos';
 import { getScalePhoto } from '../filter-photo/scale-photo';
 import { changeFilter } from '../filter-photo/change-filter';
+
 const body = document.querySelector('body');
 const uploadOverlay = document.querySelector('.img-upload__overlay');
 const uploadControl = document.querySelector('.img-upload__input');
@@ -22,6 +23,8 @@ function addHiddenToFormByEsc (evt) {
   const postError = document.querySelector('.error');
   if (isEscapeKey(evt) && !postError) {
     uploadOverlay.classList.add('hidden');
+    body.classList.remove('modal-open');
+    deletePhotos(); // возвращаем все фото обратно на заглушки
     uploadCloseButton.removeEventListener('keydown', addHiddenToFormByEsc);
   }
 }

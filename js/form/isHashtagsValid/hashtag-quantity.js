@@ -3,7 +3,15 @@ function hashtagQuantity(hashtag) {
 
   const splittedHashtags = hashtag.split(' ');
 
-  return splittedHashtags.length <= MAX_HASHTAGS;
+  const checkArray = [];
+
+  splittedHashtags.forEach((element) => {
+    if (element !== '' && element !== ' ') {
+      checkArray.push(element);
+    }
+  });
+
+  return checkArray.length <= MAX_HASHTAGS;
 
 }
 export {hashtagQuantity};

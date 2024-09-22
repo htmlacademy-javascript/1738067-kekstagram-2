@@ -1,17 +1,22 @@
-function fillPhotos (evt) {
-  const uploadOverlay = document.querySelector('.img-upload__overlay');
-  const effectItemPicture = document.querySelectorAll('.effects__preview');
+const FILE_TYPES = ['jpg', 'jpeg', 'png'];
 
-  const fileReader = new FileReader();
-  fileReader.onload = function () { // добавляем картинку в модальное окно
-    const defalutPicture = uploadOverlay.querySelector('.img-upload__preview').children[0];
-    defalutPicture.src = fileReader.result;
+const fileChooser = document.querySelector('#upload-file');
+const uploadOverlay = document.querySelector('.img-upload__overlay');
+const defalutPicture = uploadOverlay.querySelector('.img-upload__preview').querySelector('img');
+const effectItemPicture = document.querySelectorAll('.effects__preview');
+
+function fillPhotos () {
+
+  const file = fileChooser.files[0];
+  const fileName = file.name.toLowerCase();
+  const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
+  if (matches) {
+    const loadedPicture = URL.createObjectURL(file);
+    defalutPicture.src = loadedPicture;
     for (let i = 0; i <= effectItemPicture.length - 1; i++) { // применяем выбранную картинку к каждому превью шаблона
-      effectItemPicture[i].style.backgroundImage = `url(${fileReader.result})`;
+      effectItemPicture[i].style.backgroundImage = `url(${loadedPicture})`;
     }
-  };
-  fileReader.readAsDataURL(evt.target.files[0]);
-
+  }
 }
 
 export {fillPhotos};
