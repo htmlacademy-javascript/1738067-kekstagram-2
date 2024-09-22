@@ -10,7 +10,7 @@ function options() {
       maxValue: 1,
       step: 0.1,
       unit: '',
-      start: 100,
+      start: 1,
     },
     'effect-sepia': {
       name: 'sepia',
@@ -18,7 +18,7 @@ function options() {
       maxValue: 1,
       step: 0.1,
       unit: '',
-      start: 100,
+      start: 1,
     },
 
     'effect-marvin': {
@@ -36,7 +36,7 @@ function options() {
       maxValue: 3,
       step: 0.1,
       unit: 'px',
-      start: 100,
+      start: 3,
     },
 
     'effect-heat': {
@@ -45,7 +45,7 @@ function options() {
       maxValue: 3,
       step: 0.1,
       unit: '',
-      start: 100,
+      start: 3,
     },
 
   };

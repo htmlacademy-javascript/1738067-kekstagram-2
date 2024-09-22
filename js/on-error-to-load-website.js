@@ -1,8 +1,8 @@
-const DATA_ERROR = document.querySelector('#data-error').content.querySelector('.success');
-const BODY = document.querySelector('body');
+const dataError = document.querySelector('#data-error').content.querySelector('.data-error');
+const body = document.querySelector('body');
 
 function loadWebSiteErrorMessage() {
-  BODY.append(DATA_ERROR);
+  body.append(dataError);
 }
 
 export {loadWebSiteErrorMessage};

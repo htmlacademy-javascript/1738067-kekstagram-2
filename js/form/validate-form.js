@@ -25,11 +25,12 @@ pristine.addValidator(
 pristine.addValidator(
   hashtag,
   hashtagErrorPattern,
-  `максимальная длина одного хэштега 20 символов, включая решётку;<br>
+  `
+    максимальная длина одного хэштега 20 символов, включая решётку;<br>
     строка после решётки должна состоять из букв и чисел и не может содержать пробелы,
     спецсимволы (#, @, $ и т. п.),
     символы пунктуации (тире, дефис, запятая и т. п.), эмодзи и т. д.;
-    `
+  `
 );
 
 pristine.addValidator(
@@ -50,8 +51,8 @@ function validateDescription(value) {
 
 const formSubmit = (onSuccess, onError) => {
   form.addEventListener('submit', (evt) => {
-    evt.preventDefault();
     submitButton.setAttribute('disabled', '');
+    evt.preventDefault();
     if (pristine.validate()) {
 
       const formData = new FormData(evt.target);
@@ -59,7 +60,7 @@ const formSubmit = (onSuccess, onError) => {
         method: 'POST',
         body: formData,
       };
-      fetch('https://31.javascript.htmlacademy.pro/kekstagram', options)
+      fetch('https://31.javascript.htmlacademy.pro/kekstagram/', options)
         .then((response) => {
           if (response.ok) {
             return response.json();
@@ -70,14 +71,14 @@ const formSubmit = (onSuccess, onError) => {
         .then(() => {
           onSuccess();
           createSuccessMessage();
-          submitButton.disabled = false;
+          submitButton.removeAttribute('disabled');
         })
         .catch(() => {
           onError();
-          submitButton.disabled = false;
+          submitButton.removeAttribute('disabled');
         });
-
-
+    } else {
+      submitButton.removeAttribute('disabled');
     }
   });
 };

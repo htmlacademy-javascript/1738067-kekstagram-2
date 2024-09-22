@@ -1,11 +1,11 @@
-import { filter } from './filter-objects';
 
+const pictures = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture'); // находим шаблон и сразу берём из него нужный блок <a>
 const similarListFragments = document.createDocumentFragment(); // контейнер пустышка
 const filters = document.querySelector('.img-filters');
 
 // функция по отрисовке загруженных фото
-const displayPictures = function (objects, spawnBlock) {
+function displayPictures(objects) {
   // прогоняем по каждому элементу массива следующий код
   objects.forEach(({id, url, description, likes, comments}) => {
     const clonedTemplate = pictureTemplate.cloneNode(true); // копируем шаблон, чтобы добавлять в него элементы
@@ -28,15 +28,12 @@ const displayPictures = function (objects, spawnBlock) {
     similarListFragments.appendChild(clonedTemplate);
 
     // пустыку отправляем в отрисовку блоков
-    spawnBlock.appendChild(similarListFragments);
+    pictures.appendChild(similarListFragments);
 
 
   });
 
   filters.classList.remove('img-filters--inactive');
-  filter();
-
-};
-
+}
 
 export {displayPictures};

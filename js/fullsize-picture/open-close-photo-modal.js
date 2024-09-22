@@ -1,5 +1,6 @@
 import { getData } from '../get-data';
 import { isEscapeKey } from '../util';
+import { loadWebSiteErrorMessage } from '../on-error-to-load-website';
 
 const DEFAULT_STEP = 5;
 const WIDTH = 35;
@@ -31,9 +32,7 @@ function onSuccess(data) {
   objects = data;
   commentsData = data;
 }
-
-const fetchData = getData(onSuccess);
-fetchData();
+getData(onSuccess, loadWebSiteErrorMessage);
 
 function closePhoto() {
 
@@ -144,7 +143,7 @@ function openPhoto(evt) {
 
     // находим каждый элемент, НА который надо менять
     const parentBlock = target.closest('a');
-    const targetImage = parentBlock.querySelector('.picture__img').src;
+    const targetImage = parentBlock.querySelector('.picture__img').attributes[1].textContent;
     const targetLikes = parentBlock.querySelector('.picture__likes').textContent;
     commentsSection.innerHTML = '';
 
@@ -156,6 +155,7 @@ function openPhoto(evt) {
     commentsData = commentsArray;
 
     description.textContent = objects[idParentBlock].description;
+    imageModal.alt = objects[idParentBlock].description;
     imageModal.src = targetImage;
     likesCount.textContent = targetLikes;
     commentsTotalCount.textContent = objects[idParentBlock].comments.length;

@@ -52,12 +52,11 @@ function changeFilter() {
 
 
       sliderBlock.noUiSlider.on('update', () => {
-        const valueSlider = sliderBlock.noUiSlider.get();
-
-        effectValue.value = valueSlider;
+        const valueSlider = Math.round(sliderBlock.noUiSlider.get() * 10) / 10;
 
         // пример нижней строчки — filter: grapescate(1) | .unit отвечает за % или px
         photoPreview.style.filter = `${targetOptions.name}(${valueSlider}${targetOptions.unit})`;
+        effectValue.value = valueSlider;
 
       });
 
