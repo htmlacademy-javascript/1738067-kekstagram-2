@@ -1,5 +1,4 @@
 import { randomID } from '../util';
-import { displayPictures } from './display-miniatures';
 
 const MIN_INTEGER = 0;
 const MAX_INTEGER = 24;
