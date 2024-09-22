@@ -1,28 +1,52 @@
-import {displayPictures} from './objects-miniatures/display-miniatures.js';
 import './fullsize-picture/open-close-photo-modal.js';
 import {openForm} from './form/open-close-form.js';
 import './form/validate-form.js';
 import { formSubmit } from './form/validate-form.js';
-import { getData } from './get-data.js';
-import { loadWebSiteErrorMessage } from './on-error-to-load-website.js';
 import { addHiddenToForm } from './form/open-close-form.js';
 import { postErrorMessage } from './on-error-to-post.js';
 import { defaultFilter, createRandomPhotos, mostDiscussedPhotos } from './objects-miniatures/filter-objects.js';
 import { debounce } from './util.js';
 
-
 const RERENDER_DELAY = 500;
 
-getData((data) => {
-  displayPictures(data); // Отображение по умолчанию
-  defaultFilter(debounce(
-    () => displayPictures(data), RERENDER_DELAY), data);
-  createRandomPhotos(debounce(
-    () => displayPictures(data), RERENDER_DELAY), data);
-  mostDiscussedPhotos(debounce(
-    () => displayPictures(data), RERENDER_DELAY), data);
-},
-() => loadWebSiteErrorMessage());
+const filterDefault = document.querySelector('#filter-default');
+const filterRandom = document.querySelector('#filter-random');
+const filterDiscussed = document.querySelector('#filter-discussed');
+
+const selectFilter = (filterName) => {
+  filterDefault.classList.remove('img-filters__button--active');
+  filterRandom.classList.remove('img-filters__button--active');
+  filterDiscussed.classList.remove('img-filters__button--active');
+
+  switch (filterName) {
+    default:
+      filterDefault.classList.add('img-filters__button--active');
+      break;
+    case 'random':
+      filterRandom.classList.add('img-filters__button--active');
+      break;
+    case 'discussed':
+      filterDiscussed.classList.add('img-filters__button--active');
+      break;
+  }
+
+};
+
+const loadPhotos = debounce((filterName, callback) => {
+  selectFilter(filterName);
+  callback(); // Вызов функции фильтрации
+}, RERENDER_DELAY);
+
+loadPhotos('default', defaultFilter);
+
+// И теперь мы можем использовать loadPhotos в обработчиках событий
+const onDefaultClick = () => loadPhotos('default', defaultFilter);
+const onRandomClick = () => loadPhotos('random', createRandomPhotos);
+const onDiscussClick = () => loadPhotos('discussed', mostDiscussedPhotos);
+
+filterDefault.addEventListener('click', onDefaultClick);
+filterRandom.addEventListener('click', onRandomClick);
+filterDiscussed.addEventListener('click', onDiscussClick);
 
 openForm();
 formSubmit(addHiddenToForm, postErrorMessage);

@@ -1,6 +1,5 @@
 import { getData } from '../get-data';
 import { isEscapeKey } from '../util';
-import { loadWebSiteErrorMessage } from '../on-error-to-load-website';
 
 const DEFAULT_STEP = 5;
 const WIDTH = 35;
@@ -32,7 +31,7 @@ function onSuccess(data) {
   objects = data;
   commentsData = data;
 }
-getData(onSuccess, loadWebSiteErrorMessage);
+getData(onSuccess);
 
 function closePhoto() {
 
