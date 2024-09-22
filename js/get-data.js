@@ -1,9 +1,11 @@
+import { loadWebSiteErrorMessage } from './on-error-to-load-website.js';
+
 const options = {
   method: 'GET',
   credential: 'same-origin',
 };
 
-const getData = (onSuccess, onError) => fetch('https://31.javascript.htmlacademy.pro/kekstagram/data', options)
+const getData = (onSuccess) => fetch('https://31.javascript.htmlacademy.pro/kekstagram/data', options)
   .then((response) => {
     if (response.ok) {
       return response.json();
@@ -15,7 +17,7 @@ const getData = (onSuccess, onError) => fetch('https://31.javascript.htmlacademy
     onSuccess(data);
   })
   .catch(() => {
-    onError();
+    loadWebSiteErrorMessage();
   });
 
 
