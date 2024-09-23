@@ -14,9 +14,6 @@ const filterRandom = document.querySelector('#filter-random');
 const filterDiscussed = document.querySelector('#filter-discussed');
 
 const selectFilter = (filterName) => {
-  filterDefault.classList.remove('img-filters__button--active');
-  filterRandom.classList.remove('img-filters__button--active');
-  filterDiscussed.classList.remove('img-filters__button--active');
 
   switch (filterName) {
     default:
@@ -40,9 +37,27 @@ const loadPhotos = debounce((filterName, callback) => {
 loadPhotos('default', defaultFilter);
 
 // И теперь мы можем использовать loadPhotos в обработчиках событий
-const onDefaultClick = () => loadPhotos('default', defaultFilter);
-const onRandomClick = () => loadPhotos('random', createRandomPhotos);
-const onDiscussClick = () => loadPhotos('discussed', mostDiscussedPhotos);
+function onDefaultClick() {
+
+  filterDefault.classList.add('img-filters__button--active');
+  filterRandom.classList.remove('img-filters__button--active');
+  filterDiscussed.classList.remove('img-filters__button--active');
+
+  loadPhotos('default', defaultFilter);
+}
+
+function onRandomClick() {
+  filterDefault.classList.remove('img-filters__button--active');
+  filterRandom.classList.add('img-filters__button--active');
+  filterDiscussed.classList.remove('img-filters__button--active');
+  loadPhotos('random', createRandomPhotos);
+}
+function onDiscussClick() {
+  filterDefault.classList.remove('img-filters__button--active');
+  filterRandom.classList.remove('img-filters__button--active');
+  filterDiscussed.classList.add('img-filters__button--active');
+  loadPhotos('discussed', mostDiscussedPhotos);
+}
 
 filterDefault.addEventListener('click', onDefaultClick);
 filterRandom.addEventListener('click', onRandomClick);
