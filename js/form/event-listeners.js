@@ -1,28 +1,28 @@
 import { isEscapeKey } from '../util';
-function stopPropagation() {
+const stopPropagation = () => {
   const form = document.querySelector('.img-upload__form');
   const description = form.querySelector('.text__description');
   const hashtag = form.querySelector('.text__hashtags');
 
-  function onFocusAddEventListener() {
-    function isEscapeKeydown(evt) {
+  const onHashtagClick = () => {
+    const onEscapeKeydown = (evt) => {
       if (isEscapeKey(evt)) {
         evt.stopPropagation();
         description.blur();
         hashtag.blur();
 
-        description.removeEventListener('keydown', isEscapeKeydown);
-        hashtag.removeEventListener('keydown', isEscapeKeydown);
+        description.removeEventListener('keydown', onEscapeKeydown);
+        hashtag.removeEventListener('keydown', onEscapeKeydown);
       }
-    }
+    };
 
-    description.addEventListener('keydown', isEscapeKeydown);
-    hashtag.addEventListener('keydown', isEscapeKeydown);
-  }
+    description.addEventListener('keydown', onEscapeKeydown);
+    hashtag.addEventListener('keydown', onEscapeKeydown);
+  };
 
-  description.addEventListener('focus', onFocusAddEventListener);
-  hashtag.addEventListener('focus', onFocusAddEventListener);
+  description.addEventListener('focus', onHashtagClick);
+  hashtag.addEventListener('focus', onHashtagClick);
 
-}
+};
 
 export {stopPropagation};

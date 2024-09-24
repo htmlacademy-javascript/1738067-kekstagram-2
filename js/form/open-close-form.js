@@ -11,27 +11,27 @@ const uploadCloseButton = uploadOverlay.querySelector('.img-upload__cancel');
 const photoPreview = document.querySelector('.img-upload__preview').querySelector('img');
 
 
-function addHiddenToForm () {
+const onCloseButtonClick = () => {
   uploadOverlay.classList.add('hidden');
   deletePhotos(); // возвращаем все фото обратно на заглушки
   photoPreview.style = '';
   body.classList.remove('modal-open');
-  uploadCloseButton.removeEventListener('click', addHiddenToForm);
-}
+  uploadCloseButton.removeEventListener('click', onCloseButtonClick);
+};
 
-function addHiddenToFormByEsc (evt) {
+const onEscapeKeydown = (evt) => {
   const postError = document.querySelector('.error');
   if (isEscapeKey(evt) && !postError) {
     uploadOverlay.classList.add('hidden');
     body.classList.remove('modal-open');
     deletePhotos(); // возвращаем все фото обратно на заглушки
-    uploadCloseButton.removeEventListener('keydown', addHiddenToFormByEsc);
+    uploadCloseButton.removeEventListener('keydown', onEscapeKeydown);
   }
-}
+};
 
-function openForm() {
+const openForm = () => {
 
-  function removeHiddenToForm (evt) {
+  const removeHiddenToForm = (evt) => {
     fillPhotos(evt); // заполняем все шаблоны-превью и основную картинку, выбранной
 
     // прогружаем скрипты для редактирования фото
@@ -41,14 +41,14 @@ function openForm() {
     // затем показываем окно формы
     body.classList.add('modal-open');
     uploadOverlay.classList.remove('hidden');
-    uploadCloseButton.addEventListener('click', addHiddenToForm);
-    document.addEventListener('keydown', addHiddenToFormByEsc);
+    uploadCloseButton.addEventListener('click', onCloseButtonClick);
+    document.addEventListener('keydown', onEscapeKeydown);
 
-  }
+  };
 
 
   uploadControl.addEventListener('change', removeHiddenToForm);
 
-}
+};
 
-export {openForm, addHiddenToForm};
+export {openForm, onCloseButtonClick};

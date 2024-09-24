@@ -27,13 +27,14 @@ let commentsData = [];
 let countComments = 0;
 let objects;
 
-function onSuccess(data) {
+const onSuccess = (data) => {
   objects = data;
   commentsData = data;
-}
+};
+
 getData(onSuccess);
 
-function closePhoto() {
+const onCloseButtonClick = () => {
 
   bigPicture.classList.add('hidden');
   body.classList.remove('modal-open');
@@ -41,43 +42,34 @@ function closePhoto() {
 
   removeListenersForCloseModal();
 
-}
+};
 
-function closeByClick(evt) {
+const onModalClick = (evt) => {
   if (!(evt.target.closest('.big-picture__preview'))) {
-    closePhoto();
+    onCloseButtonClick();
   }
-}
+};
 
-function closeByEsc(evt) {
+const onEscapeKeydown = (evt) => {
   if (isEscapeKey(evt)) {
-    closePhoto();
+    onCloseButtonClick();
   }
-}
+};
 
-function addListenersForCloseModal() {
+const addListenersForCloseModal = () => {
 
   // закрытие модульного окна по клику на крестик
-  closeButton.addEventListener('click', closePhoto);
+  closeButton.addEventListener('click', onCloseButtonClick);
 
   // для удобства закрытие на нажатие "мимо" открытого модульного окна
-  bigPicture.addEventListener('click', closeByClick);
+  bigPicture.addEventListener('click', onModalClick);
 
   // закрытие модульного окна по нажатию ESC
-  document.addEventListener('keydown', closeByEsc);
+  document.addEventListener('keydown', onEscapeKeydown);
 
-}
+};
 
-function removeListenersForCloseModal() {
-
-  closeButton.removeEventListener('click', closePhoto);
-  bigPicture.removeEventListener('click', closeByClick);
-  document.removeEventListener('keydown', closeByEsc);
-  socialCommentsLoader.removeEventListener('click', createCommentList);
-
-}
-
-function createLiElement(avatar, name, message) {
+const createLiElement = (avatar, name, message) => {
   const li = document.createElement('li');
   const img = document.createElement('img');
   const p = document.createElement('p');
@@ -96,7 +88,7 @@ function createLiElement(avatar, name, message) {
   li.appendChild(p);
 
   return commentsSection.appendChild(li);
-}
+};
 
 const createCommentsFragment = (arrays) => {
   const commentsFragment = document.createDocumentFragment();
@@ -113,7 +105,7 @@ const createCommentsFragment = (arrays) => {
   return commentsFragment;
 };
 
-function createCommentList() {
+const onLoaderClick = () => {
   const countOfStep = countComments + DEFAULT_STEP;
   const areAllCommentsShown = countOfStep >= commentsData.length;
   const fiveComments = commentsData.slice(countComments, countOfStep);
@@ -127,11 +119,21 @@ function createCommentList() {
     socialCommentsLoader.classList.add('hidden');
   }
 
-  socialCommentsLoader.addEventListener('click', createCommentList);
+  socialCommentsLoader.addEventListener('click', onLoaderClick);
+
+};
+
+// эту функцию не получается сделать переменной с стрелочной функцией, потому что где бы я ни объявил её, у меня нарушается область видимости
+function removeListenersForCloseModal() {
+
+  closeButton.removeEventListener('click', onCloseButtonClick);
+  bigPicture.removeEventListener('click', onModalClick);
+  document.removeEventListener('keydown', onEscapeKeydown);
+  socialCommentsLoader.removeEventListener('click', onLoaderClick);
 
 }
 
-function openPhoto(evt) {
+const onPhotoClick = (evt) => {
   const target = evt.target;
   if (target.matches('[class="picture__img"]')) {
     evt.preventDefault();
@@ -167,11 +169,11 @@ function openPhoto(evt) {
       socialCommentsLoader.classList.remove('hidden');
     }
 
-    createCommentList(commentsArray);
+    onLoaderClick(commentsArray);
   }
 
-}
+};
 
-pictures.addEventListener('click', openPhoto);
+pictures.addEventListener('click', onPhotoClick);
 
-export {openPhoto, closePhoto};
+export {onPhotoClick, onCloseButtonClick};

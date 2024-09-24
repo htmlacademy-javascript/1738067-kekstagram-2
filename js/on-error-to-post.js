@@ -4,34 +4,34 @@ const postError = document.querySelector('#error').content.querySelector('.error
 const closeButton = postError.querySelector('.error__button');
 const body = document.querySelector('body');
 
-function postErrorMessage() {
+const postErrorMessage = () => {
   body.append(postError);
 
 
-  function closeByEsc(evt) {
+  const onEscapeKeydown = (evt) => {
     if (isEscapeKey(evt)) {
       postError.remove();
-      document.removeEventListener('keydown', closeByEsc);
+      document.removeEventListener('keydown', onEscapeKeydown);
 
     }
-  }
+  };
 
-  function closeByButton() {
+  const onCloseButtonClick = () => {
     postError.remove();
-    closeButton.removeEventListener('click', closeByButton);
+    closeButton.removeEventListener('click', onCloseButtonClick);
 
-  }
+  };
 
-  function closeByClick(evt) {
+  const onModalClick = (evt) => {
     if (!evt.target.closest('.error__inner')) {
       postError.remove();
-      document.removeEventListener('click', closeByClick);
+      document.removeEventListener('click', onModalClick);
     }
-  }
+  };
 
-  closeButton.addEventListener('click', closeByButton);
-  document.addEventListener('click', closeByClick);
-  document.addEventListener('keydown', closeByEsc);
-}
+  closeButton.addEventListener('click', onCloseButtonClick);
+  document.addEventListener('click', onModalClick);
+  document.addEventListener('keydown', onEscapeKeydown);
+};
 
 export {postErrorMessage};

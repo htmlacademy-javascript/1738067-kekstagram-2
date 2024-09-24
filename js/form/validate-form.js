@@ -15,6 +15,8 @@ const pristine = new Pristine(form, {
   errorTextClass: 'img-upload__field-wrapper--error',
 });
 
+const validateDescription = (value) => value.length <= 140;
+
 pristine.addValidator(
   description,
   validateDescription,
@@ -44,10 +46,6 @@ pristine.addValidator(
   isHashtagRepeat,
   'Хештеги не могут повторяться'
 );
-
-function validateDescription(value) {
-  return value.length <= 140;
-}
 
 const formSubmit = (onSuccess, onError) => {
   form.addEventListener('submit', (evt) => {
