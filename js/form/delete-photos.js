@@ -8,7 +8,7 @@ const descriptionValue = document.querySelector('.text__description');
 const sliderParent = document.querySelector('.img-upload__effect-level');
 const fileChooser = document.querySelector('#upload-file');
 
-function deletePhotos() {
+const deletePhotos = () => {
   const pristineError = document.querySelectorAll('.pristine-error');
   if (pristineError) {
     pristineError.forEach((element) => {
@@ -27,6 +27,6 @@ function deletePhotos() {
     effectItemPicture[i].style.backgroundImage = '';
   }
 
-}
+};
 
 export {deletePhotos};

@@ -5,7 +5,7 @@ const similarListFragments = document.createDocumentFragment(); // контей�
 const filters = document.querySelector('.img-filters');
 
 // функция по отрисовке загруженных фото
-function displayPictures(objects) {
+const displayPictures = (objects) => {
   // прогоняем по каждому элементу массива следующий код
   objects.forEach(({id, url, description, likes, comments}) => {
     const clonedTemplate = pictureTemplate.cloneNode(true); // копируем шаблон, чтобы добавлять в него элементы
@@ -34,6 +34,6 @@ function displayPictures(objects) {
   });
 
   filters.classList.remove('img-filters--inactive');
-}
+};
 
 export {displayPictures};

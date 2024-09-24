@@ -1,4 +1,4 @@
-function options() {
+const options = () => {
 
   const filters = {
     'effect-none':
@@ -51,7 +51,7 @@ function options() {
   };
 
   return filters;
-}
+};
 
 
 export {options};

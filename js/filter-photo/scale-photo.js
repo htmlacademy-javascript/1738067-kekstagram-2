@@ -3,7 +3,7 @@ const STEP = 25;
 const MAXIMUM_SCALE = 100;
 const MINIMUM_SCALE = 25;
 
-function getScalePhoto() {
+const getScalePhoto = () => {
   const scaleBlock = document.querySelector('.img-upload__scale');
   const scaleSmaller = scaleBlock.querySelector('.scale__control--smaller');
   const scaleBigger = scaleBlock.querySelector('.scale__control--bigger');
@@ -12,18 +12,17 @@ function getScalePhoto() {
 
   const imagePreview = document.querySelector('.img-upload__preview').querySelector('img');
 
-  scaleSmaller.addEventListener('click', makeItSmall);
-  scaleBigger.addEventListener('click', makeItBig);
-  function makeItSmall() {
+
+  const onMinusClick = () => {
 
     if (countScale > MINIMUM_SCALE) {
       countScale = countScale - STEP;
       scaleValue.value = `${countScale}%`;
       imagePreview.style.transform = `scale(${countScale / 100})`;
     }
-  }
+  };
 
-  function makeItBig() {
+  const onPlusClick = () => {
 
     if (countScale < MAXIMUM_SCALE) {
       countScale = countScale + STEP;
@@ -31,7 +30,11 @@ function getScalePhoto() {
       imagePreview.style.transform = `scale(${countScale / 100})`;
     }
 
-  }
-}
+  };
+
+  scaleSmaller.addEventListener('click', onMinusClick);
+  scaleBigger.addEventListener('click', onPlusClick);
+
+};
 
 export {getScalePhoto};

@@ -1,19 +1,19 @@
-function hashtagErrorPattern(hashtag) {
+const hashtagErrorPattern = (hashtag) => {
 
   const patternHastag = /^#[a-zа-яё0-9]{1,19}$/i;
   const splittedHashtags = hashtag.split(' ');
 
   let flag = true;
 
-  const checkArray = [];
+  const validHashtags = [];
 
   splittedHashtags.forEach((element) => {
     if (element !== '' && element !== ' ') {
-      checkArray.push(element);
+      validHashtags.push(element);
     }
   });
 
-  checkArray.forEach((element) => {
+  validHashtags.forEach((element) => {
     if (!patternHastag.test(element)) {
       flag = false; // Если хотя бы один элемент не соответствует шаблону
     }
@@ -25,5 +25,6 @@ function hashtagErrorPattern(hashtag) {
 
   return flag;
 
-}
+};
+
 export {hashtagErrorPattern};

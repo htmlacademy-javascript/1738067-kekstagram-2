@@ -1,16 +1,17 @@
-function isHashtagRepeat(hashtag) {
+const isHashtagRepeat = (hashtag) => {
 
   const arrayHashtags = hashtag.toUpperCase().split(' ');
 
-  const checkArray = [];
+  const validHashtags = [];
 
   arrayHashtags.forEach((element) => {
     if (element !== '' && element !== ' ') {
-      checkArray.push(element);
+      validHashtags.push(element);
     }
   });
-  const duplicates = checkArray.filter((elem, index, array) => array.indexOf(elem) !== index);
+  const duplicates = validHashtags.filter((elem, index, array) => array.indexOf(elem) !== index);
 
   return duplicates.length === 0;
-}
+};
+
 export {isHashtagRepeat};

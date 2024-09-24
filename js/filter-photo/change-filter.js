@@ -20,7 +20,7 @@ noUiSlider.create(sliderBlock, {
 
 });
 
-function changeFilter() {
+const changeFilter = () => {
 
   effectsRadio.forEach((radio) => {
 
@@ -64,6 +64,6 @@ function changeFilter() {
 
   });
 
-}
+};
 
 export { changeFilter };

@@ -8,30 +8,30 @@ function createSuccessMessage() {
   body.append(dataSuccess);
 
 
-  function closeByEsc(evt) {
+  function onEscapeKeydown(evt) {
     if (isEscapeKey(evt)) {
       dataSuccess.remove();
-      document.removeEventListener('keydown', closeByEsc);
+      document.removeEventListener('keydown', onEscapeKeydown);
 
     }
   }
 
-  function closeByButton() {
+  function onCloseButtonClick() {
     dataSuccess.remove();
-    closeButton.removeEventListener('click', closeByButton);
+    closeButton.removeEventListener('click', onCloseButtonClick);
 
   }
 
-  function closeByClick(evt) {
+  function onModalClick(evt) {
     if (!evt.target.closest('.success__inner')) {
       dataSuccess.remove();
-      document.removeEventListener('click', closeByClick);
+      document.removeEventListener('click', onModalClick);
     }
   }
 
-  closeButton.addEventListener('click', closeByButton);
-  document.addEventListener('click', closeByClick);
-  document.addEventListener('keydown', closeByEsc);
+  closeButton.addEventListener('click', onCloseButtonClick);
+  document.addEventListener('click', onModalClick);
+  document.addEventListener('keydown', onEscapeKeydown);
 
 
 }
