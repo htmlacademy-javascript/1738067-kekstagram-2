@@ -25,6 +25,7 @@ const onEscapeKeydown = (evt) => {
     uploadOverlay.classList.add('hidden');
     body.classList.remove('modal-open');
     deletePhotos(); // возвращаем все фото обратно на заглушки
+    photoPreview.style = '';
     uploadCloseButton.removeEventListener('keydown', onEscapeKeydown);
   }
 };
